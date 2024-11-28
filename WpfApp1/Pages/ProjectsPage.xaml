@@ -1,0 +1,47 @@
+﻿<Page x:Class="WpfApp1.ProjectsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProjectsPage" Background="LightPink">
+
+    <Grid>
+        <ListView ItemsSource="{Binding Projects}" Margin="400,0,0,0" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding id}" Width="30" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="210" />
+                    <GridViewColumn Header="CustomerId" DisplayMemberBinding="{Binding CustomerId}" Width="80" />
+                    <GridViewColumn Header="TypeId" DisplayMemberBinding="{Binding TypeId}" Width="80" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Margin="10,10,420,10">
+            <TextBox x:Name="IdTextBox" IsReadOnly="True" Margin="0,0,0,10" />
+            <TextBox x:Name="NameTextBox" Margin="0,0,0,10" />
+            <TextBox x:Name="CustomerIdTextBox" Margin="0,0,0,10" />
+            <TextBox x:Name="TypeIdTextBox" Margin="0,0,0,10" />
+            <DatePicker x:Name="EndDatePicker" Margin="0,0,0,10" />
+            <TextBox x:Name="ProjectStateIdTextBox" Margin="0,0,0,10" />
+
+            <Button Content="Добавить проект" Click="AddProjectButton_Click" Margin="0,10,0,0" />
+            <Button Content="Изменить проект" Click="UpdateProjectButton_Click" Margin="0,10,0,0" />
+
+        </StackPanel>
+            <ListView x:Name="EstimateListView" Margin="10,254,420,10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="MaterialId" DisplayMemberBinding="{Binding MaterialId}" Width="70" />
+                        <GridViewColumn Header="MaterialQuantity" DisplayMemberBinding="{Binding MaterialQuantity}" Width="100" />
+                        <GridViewColumn Header="EquipmentId" DisplayMemberBinding="{Binding EquipmentId}" Width="85" />
+                        <GridViewColumn Header="EquipmentQuantity" DisplayMemberBinding="{Binding EquipmentQuantity}" Width="110" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+    </Grid>
+</Page>

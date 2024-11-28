@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfApp1.DeadlinesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="DeadlinesPage" Background="AliceBlue" Height="449">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Список задач -->
+        <StackPanel Grid.Column="0" Margin="10,10,370,10" Grid.ColumnSpan="2">
+            <TextBlock Text="Выберите проект" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+            <ComboBox x:Name="ProjectComboBox" SelectionChanged="ProjectComboBox_SelectionChanged">
+                <!-- Проекты будут подгружаться в ComboBox -->
+            </ComboBox>
+
+            <TextBlock Text="Список задач" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+            <ListView x:Name="TaskListView" SelectionChanged="TaskListView_SelectionChanged" Height="311">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="60" />
+                        <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Descrition}" Width="200" />
+                        <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding StartDate}" Width="90" />
+                        <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding EndDate}" Width="90" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Добавить задачу" Click="AddTaskButton_Click" Margin="0,10,0,0" />
+        </StackPanel>
+
+        <!-- Детали задачи и график -->
+        <StackPanel Grid.Column="1" Margin="126,10,10,10">
+            <TextBlock Text="Детали задачи" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+
+            <TextBox x:Name="TaskNameTextBox" Margin="0,0,0,10" />
+            <TextBox x:Name="TaskDescriptionTextBox" Margin="0,0,0,10" />
+            <DatePicker x:Name="TaskStartDatePicker" Margin="0,0,0,10" />
+            <DatePicker x:Name="TaskEndDatePicker" Margin="0,0,0,10" />
+
+            <Button Content="Сохранить изменения" Click="SaveTaskButton_Click" Margin="0,10,0,10" />
+            <Button Content="Построить диаграмму Ганта" Click="BuildGanttChartButton_Click" />
+
+            <!-- Здесь будет размещена диаграмма Ганта -->
+            <Border BorderThickness="1" BorderBrush="Gray" Margin="0,20,0,0">
+                <Canvas x:Name="GanttChartCanvas" Height="189" />
+            </Border>
+        </StackPanel>
+    </Grid>
+
+</Page>

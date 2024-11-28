@@ -1,0 +1,42 @@
+﻿<Page x:Class="WpfApp1.DocsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DocsPage" Background="AliceBlue">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Выбор анализа -->
+        <ComboBox x:Name="AnalysisTypeComboBox" Grid.Row="0" Width="300" Margin="0,0,0,10" 
+              HorizontalAlignment="Left" SelectionChanged="AnalysisTypeComboBox_SelectionChanged">
+            <ComboBoxItem Content="Анализ эффективности проектов" />
+            <ComboBoxItem Content="Загрузка сотрудников" />
+        </ComboBox>
+
+        <!-- Список данных -->
+        <ListView x:Name="ReportListView" Grid.Row="1" Margin="0,10,0,10">
+            <ListView.View>
+                <GridView x:Name="ReportGridView">
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Кнопка для генерации отчета -->
+        <Button x:Name="GenerateReportButton" Grid.Row="2" Content="Сгенерировать отчет" Width="200" Margin="0,10,0,0" 
+            HorizontalAlignment="Left" Click="GenerateReportButton_Click" />
+
+        <!-- Кнопка для экспорта отчета -->
+        <Button x:Name="ExportButton" Grid.Row="3" Content="Экспортировать отчет" Width="200" Margin="0,10,0,0" 
+            HorizontalAlignment="Left" Click="ExportButton_Click" />
+    </Grid>
+</Page>
