@@ -1,5 +1,8 @@
-﻿using System;
+﻿using QRCoder;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +27,38 @@ namespace WpfApp1
         public MainPage()
         {
             InitializeComponent();
+            qrImage.Source = GenerateQrCodeBitmapImage("Сделал даня аксенов 322");
+        }
+
+        private BitmapImage GenerateQrCodeBitmapImage(string text)
+        {
+            using (var qrGenerator = new QRCodeGenerator())
+            {
+                using (var qrCodeData = qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q))
+                {
+                    using (var qrCode = new QRCode(qrCodeData))
+                    {
+                        using (var qrBitmap = qrCode.GetGraphic(20))
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                qrBitmap.Save(ms, ImageFormat.Png);
+                                ms.Position = 0;
+                                var bitmapImage = new BitmapImage();
+
+                                bitmapImage.BeginInit();
+                                {
+                                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmapImage.StreamSource = ms;
+                                }
+                                bitmapImage.EndInit();
+
+                                return bitmapImage;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void Projects(object sender, RoutedEventArgs e)
