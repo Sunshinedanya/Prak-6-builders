@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using WpfApp1.DB;
@@ -27,11 +25,11 @@ namespace WpfApp1
 
         private void LoadSalaries(int projectId)
         {
-                var salaries = DBConnector.DB.Salary
-                    .Where(s => s.ProjectId == projectId)
-                    .ToList();
+            var salaries = DBConnector.DB.Salary
+                .Where(s => s.ProjectId == projectId)
+                .ToList();
 
-                SalaryListView.ItemsSource = salaries;
+            SalaryListView.ItemsSource = salaries;
         }
 
         // Обработка выбора проекта в ComboBox
